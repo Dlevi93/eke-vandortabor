@@ -1,0 +1,56 @@
+<form #workForm="ngForm" class="editForm" novalidate>
+  <div class="form-horizontal">
+    <div class="tab-pane fade in active">
+      <h4 class="head text-center">2. l&eacute;p&eacute;s: T&aacute;borral kapcsolatos adatok kit&ouml;lt&eacute;se</h4>
+      <br />
+      <div class='row'>
+        <div class='col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8'>
+          <div class="row">
+            <div class='col-xs-12 col-sm-6'>
+              <div class="form-group">
+                <label class="control-label" for="selectedValueMembership">Tagság </label>
+                <p-dropdown placeholder="Kérem válasszon" [style]="{'width':'200px'}" required [options]="memberships" [(ngModel)]="selectedValueMembership"
+                  optionLabel="name"></p-dropdown>
+              </div>
+            </div>
+            <div class='col-xs-12 col-sm-6'>
+              <div class="form-group">
+                <label class="control-label" for="tagNo">Tagsági könyv száma</label>
+                <input class="form-control input-md" #tagNo="ngModel" required id="tagNo" name="tagNo" type="text" placeholder="Vezet&eacute;kn&eacute;v"
+                  [(ngModel)]="personal.tagNo">
+                <div class="alert alert-danger" [hidden]="tagNo.valid">Vezet&eacute;kn&eacute;v kit&ouml;lt&eacute;se k&ouml;telez&#337;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class='col-xs-12 col-sm-6'>
+              <div class="form-group">
+                <label class="control-label" for="selectedAccomodationTypes">Szállás </label>
+                <p-dropdown placeholder="Kérem válasszon" [style]="{'width':'200px'}" required [options]="accomodationTypes" [(ngModel)]="selectedAccomodationTypes"
+                  optionLabel="name"></p-dropdown>
+              </div>
+            </div>
+            <div class='col-xs-12 col-sm-6'>
+              <div class="form-group">
+                <label class="control-label" for="carNo">Személygépkocsi rendszáma</label>
+                <input class="form-control input-md" #carNo="ngModel" required id="carNo" name="carNo" type="text" placeholder="Keresztn&eacute;v"
+                  [(ngModel)]="personal.carNo">
+                <div class="alert alert-danger" [hidden]="carNo.valid">Vezet&eacute;kn&eacute;v kit&ouml;lt&eacute;se k&ouml;telez&#337;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group text-center space-20">
+            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(workForm)">
+              <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Vissza </button>
+            <button class="btn btn-outline-rounded btn-info" [disabled]="!workForm.valid" (click)="goToNext(workForm)"> Tov&aacute;bb
+              <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
