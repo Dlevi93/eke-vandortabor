@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -16,7 +18,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { NavbarComponent } from './components/registrationflow/navbar/navbar.component';
 import { PersonalComponent } from './components/registrationflow/personal/personal.component';
 import { PersonalTripComponent } from './components/registrationflow/personaltrip/personaltrip.component';
-import { AddressComponent } from './components/registrationflow/address/address.component';
+import { TripSelectComponent } from './components/registrationflow/tripselect/tripselect.component';
 import { ResultComponent } from './components/registrationflow/result/result.component';
 
 /* Shared Service */
@@ -35,7 +37,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
         NavbarComponent,
         PersonalComponent,
         PersonalTripComponent,
-        AddressComponent,
+        TripSelectComponent,
         ResultComponent,
 
         HomeComponent
@@ -43,6 +45,9 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
     imports: [
         CalendarModule,
         DropdownModule,
+        InputTextareaModule,
+        CheckboxModule,
+
         CommonModule,
         HttpClientModule,
         FormsModule,
@@ -56,7 +61,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
                 path: 'registration', component: RegistrationComponent, children: [
                     { path: 'personal', component: PersonalComponent },
                     { path: 'pstrip', component: PersonalTripComponent, canActivate: [WorkflowGuard] },
-                    { path: 'address', component: AddressComponent, canActivate: [WorkflowGuard] },
+                    { path: 'tripselect/:id', component: TripSelectComponent, canActivate: [WorkflowGuard] },
                     { path: 'result', component: ResultComponent, canActivate: [WorkflowGuard] },
                     { path: '', redirectTo: '/registration/personal', pathMatch: 'full' },
                 ]

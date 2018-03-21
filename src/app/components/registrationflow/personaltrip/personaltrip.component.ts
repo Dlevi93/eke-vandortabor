@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { FormDataService } from '../data/formData.service';
-import { SelectItem } from 'primeng/api';
+import { Personal } from '../data/formData.model';
 import { PersonalTripService } from './personaltrip.service';
 import { Membership } from './personaltrip.service';
 import { AccomodationType } from './personaltrip.service';
@@ -23,39 +23,49 @@ export class PersonalTripComponent implements OnInit {
     selectedValueMembership: Membership;
     selectedAccomodationTypes: AccomodationType;
 
-    workType: string;
+    personal: Personal;
     form: any;
 
     constructor(private router: Router, private formDataService: FormDataService, private personalTripService: PersonalTripService) {
     }
 
     ngOnInit() {
-        this.workType = this.formDataService.getWork();
+        this.personal = this.formDataService.getPersonal();
         this.personalTripService.getMemberships().subscribe(result => this.memberships = result);
         this.personalTripService.getAccomodationTypes().subscribe(result => this.accomodationTypes = result);
         console.log('Personal trip feature loaded!');
     }
 
-    save(form: any): boolean {
-        if (!form.valid) {
+    save(form: any, backNav: boolean): boolean {
+        if (!form.valid && !backNav) {
             return false;
         }
 
-        this.formDataService.setWork(this.workType);
+        this.formDataService.setPersonalTrip(this.personal);
         return true;
     }
 
     goToPrevious(form: any) {
-        if (this.save(form)) {
+        if (this.save(form, true)) {
             // Navigate to the personal page
             this.router.navigate(['registration/personal']);
         }
     }
 
     goToNext(form: any) {
-        if (this.save(form)) {
+        if (this.save(form, false)) {
             // Navigate to the address page
-            this.router.navigate(['registration/address']);
+            this.router.navigate(['registration/tripselect/1']);
         }
+    }
+
+    checkAccomodationValue(value: AccomodationType) {
+        if (value.id === 3) { return false; }
+        return true;
+    }
+
+    checkMembershipValue(value: Membership) {
+        if (value.id === 1) { return true; }
+        return false;
     }
 }

@@ -1,0 +1,29 @@
+<form #tripForm="ngForm" class="editForm" novalidate>
+  <div class="tab-pane fade in active">
+    <h4 class="head text-center">{{id}}. túra kiválasztása</h4>
+    <br/>
+    <div class='row'>
+      <div class='col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8'>
+
+        <div class="row">
+          <div class='col-xs-12 col-sm-12'>
+            <div class="form-group">
+              <label class="control-label" for="filledTrip">Túrák listája </label>
+              <p-dropdown placeholder="Nem döntöttem még" [style]="{'width':'100%'}" required [options]="tripList"
+                [(ngModel)]="filledTrip" optionLabel="name" name="filledTrip"></p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group text-center">
+          <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(tripForm)">
+            <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
+          <button class="btn btn-outline-rounded btn-info" [disabled]="!tripForm.valid" (click)="goToNext(tripForm)"> Next
+            <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

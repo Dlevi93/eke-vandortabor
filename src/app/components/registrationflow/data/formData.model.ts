@@ -7,12 +7,15 @@ export class FormData {
     country = '';
     phoneno = '';
     cnp = '';
+    member = '';
+    accomodation = '';
+    carNo = '';
+    tagNo = '';
+    notes = '';
 
-    work = '';
-    street = '';
-    state = '';
-    zip = '';
-
+    trip1Id = '';
+    trip2Id = '';
+    trip3Id = '';
 
     clear() {
         this.firstName = '';
@@ -23,11 +26,15 @@ export class FormData {
         this.country = '';
         this.phoneno = '';
         this.cnp = '';
+        this.member = '';
+        this.accomodation = '';
+        this.carNo = '';
+        this.tagNo = '';
+        this.notes = '';
 
-        this.work = '';
-        this.street = '';
-        this.state = '';
-        this.zip = '';
+        this.trip1Id = '';
+        this.trip2Id = '';
+        this.trip3Id = '';
     }
 }
 
@@ -40,10 +47,13 @@ export class Personal {
     country = '';
     phoneno = '';
     cnp = '';
+    member = '';
+    accomodation = '';
+    carNo = '';
+    tagNo = '';
+    notes = '';
 }
 
-export class Address {
-    street = '';
-    state = '';
-    zip = '';
+export class Trip {
+    id = '';
 }
