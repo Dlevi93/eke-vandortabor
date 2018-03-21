@@ -9,16 +9,32 @@
           <div class='col-xs-12 col-sm-12'>
             <div class="form-group">
               <label class="control-label" for="filledTrip">Túrák listája </label>
-              <p-dropdown placeholder="Nem döntöttem még" [style]="{'width':'100%'}" required [options]="tripList"
-                [(ngModel)]="filledTrip" optionLabel="name" name="filledTrip"></p-dropdown>
+              <p-dropdown [style]="{'width':'100%'}" [options]="tripListApi" [(ngModel)]="filledTrip" optionLabel="name" name="filledTrip"
+                (onChange)="getTrip(filledTrip.id)"></p-dropdown>
             </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="tripApi != null">
+          <div class='col-xs-12 col-sm-12'>
+            <h1 class="text-center">{{tripApi.name}}</h1>
+            <p>Hossz: {{tripApi.length}}</p>
+            <p>Ár: {{tripApi.price}}</p>
+            <p>Nehézség: {{tripApi.difficulty?.name}} </p>
+            <p>Jellemzők: </p>
+              <ul>
+                <li *ngFor="let attrib of tripApi.attributes">
+                  {{attrib.name}}
+                </li>
+              </ul>
+            <p> Kategória: {{tripApi.category?.name}} </p>
           </div>
         </div>
 
         <div class="form-group text-center">
           <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(tripForm)">
-            <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
-          <button class="btn btn-outline-rounded btn-info" [disabled]="!tripForm.valid" (click)="goToNext(tripForm)"> Next
+            <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Vissza</button>
+          <button class="btn btn-outline-rounded btn-info" [disabled]="!tripForm.valid" (click)="goToNext(tripForm)"> Tovább
             <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
           </button>
         </div>

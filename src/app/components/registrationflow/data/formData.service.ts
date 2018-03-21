@@ -70,21 +70,25 @@ export class FormDataService {
             case 1:
                 const trip1: Trip = {
                     id: this.formData.trip1Id,
+                    name: this.formData.trip1Name
                 };
                 return trip1;
             case 2:
                 const trip2: Trip = {
                     id: this.formData.trip2Id,
+                    name: this.formData.trip2Name
                 };
                 return trip2;
             case 3:
                 const trip3: Trip = {
-                    id: this.formData.trip2Id,
+                    id: this.formData.trip3Id,
+                    name: this.formData.trip3Name
                 };
                 return trip3;
             default:
                 const trip: Trip = {
                     id: this.formData.trip1Id,
+                    name: this.formData.trip1Name
                 };
                 return trip;
         }
@@ -95,21 +99,25 @@ export class FormDataService {
         switch (step) {
             case 1:
                 this.formData.trip1Id = data.id;
+                this.formData.trip1Name = data.name;
                 this.isTripForm1Valid = true;
                 this.workflowService.validateStep(STEPS.trip1);
                 break;
             case 2:
                 this.formData.trip2Id = data.id;
+                this.formData.trip3Name = data.name;
                 this.isTripForm2Valid = true;
                 this.workflowService.validateStep(STEPS.trip2);
                 break;
             case 3:
                 this.formData.trip3Id = data.id;
+                this.formData.trip3Name = data.name;
                 this.isTripForm3Valid = true;
                 this.workflowService.validateStep(STEPS.trip3);
                 break;
             default:
                 this.formData.trip1Id = data.id;
+                this.formData.trip1Name = data.name;
                 this.isTripForm1Valid = true;
                 this.workflowService.validateStep(STEPS.trip1);
         }

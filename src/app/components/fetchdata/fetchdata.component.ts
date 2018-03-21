@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
+    // tslint:disable-next-line:component-selector
     selector: 'fetchdata',
     templateUrl: './fetchdata.component.html'
 })

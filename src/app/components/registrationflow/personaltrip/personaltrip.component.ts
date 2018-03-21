@@ -7,13 +7,14 @@ import { Personal } from '../data/formData.model';
 import { PersonalTripService } from './personaltrip.service';
 import { Membership } from './personaltrip.service';
 import { AccomodationType } from './personaltrip.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     // tslint:disable-next-line:component-selector
     selector: 'mt-wizard-personaltrip',
     templateUrl: './personaltrip.component.html',
     styleUrls: ['./personaltrip.component.css'],
-    providers: [PersonalTripService]
+    providers: [PersonalTripService],
 })
 
 export class PersonalTripComponent implements OnInit {
@@ -26,14 +27,17 @@ export class PersonalTripComponent implements OnInit {
     personal: Personal;
     form: any;
 
-    constructor(private router: Router, private formDataService: FormDataService, private personalTripService: PersonalTripService) {
+    constructor(private router: Router, private formDataService: FormDataService, private personalTripService: PersonalTripService,
+        private spinnerService: Ng4LoadingSpinnerService) {
     }
 
     ngOnInit() {
+        this.spinnerService.show();
         this.personal = this.formDataService.getPersonal();
         this.personalTripService.getMemberships().subscribe(result => this.memberships = result);
         this.personalTripService.getAccomodationTypes().subscribe(result => this.accomodationTypes = result);
         console.log('Personal trip feature loaded!');
+        this.spinnerService.hide();
     }
 
     save(form: any, backNav: boolean): boolean {

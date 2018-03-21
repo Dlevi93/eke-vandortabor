@@ -7,6 +7,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -47,6 +48,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
         DropdownModule,
         InputTextareaModule,
         CheckboxModule,
+        Ng4LoadingSpinnerModule.forRoot(),
 
         CommonModule,
         HttpClientModule,
@@ -65,6 +67,14 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
                     { path: 'result', component: ResultComponent, canActivate: [WorkflowGuard] },
                     { path: '', redirectTo: '/registration/personal', pathMatch: 'full' },
                 ]
+
+                // path: 'registration', component: RegistrationComponent, children: [
+                //     { path: 'personal', component: PersonalComponent },
+                //     { path: 'pstrip', component: PersonalTripComponent },
+                //     { path: 'tripselect/:id', component: TripSelectComponent },
+                //     { path: 'result', component: ResultComponent },
+                //     { path: '', redirectTo: '/registration/personal', pathMatch: 'full' },
+                // ]
             },
 
             { path: '**', redirectTo: 'PersonalComponent' }

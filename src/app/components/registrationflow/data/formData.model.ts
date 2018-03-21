@@ -14,8 +14,11 @@ export class FormData {
     notes = '';
 
     trip1Id = '';
+    trip1Name = '';
     trip2Id = '';
+    trip2Name = '';
     trip3Id = '';
+    trip3Name = '';
 
     clear() {
         this.firstName = '';
@@ -35,6 +38,10 @@ export class FormData {
         this.trip1Id = '';
         this.trip2Id = '';
         this.trip3Id = '';
+
+        this.trip1Name = '';
+        this.trip2Name = '';
+        this.trip3Name = '';
     }
 }
 
@@ -56,4 +63,5 @@ export class Personal {
 
 export class Trip {
     id = '';
+    name = '';
 }

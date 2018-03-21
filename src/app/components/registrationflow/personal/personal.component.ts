@@ -6,8 +6,8 @@ import { FormDataService } from '../data/formData.service';
 
 @Component({
     // tslint:disable-next-line:component-selector
-    selector: 'mt-wizard-personal'
-    , templateUrl: './personal.component.html'
+    selector: 'mt-wizard-personal',
+    templateUrl: './personal.component.html',
 })
 
 export class PersonalComponent implements OnInit {
