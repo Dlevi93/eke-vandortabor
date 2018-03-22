@@ -8,26 +8,26 @@
         <div class="row">
           <div class='col-xs-12 col-sm-12'>
             <div class="form-group">
-              <label class="control-label" for="filledTrip">Túrák listája </label>
-              <p-dropdown [style]="{'width':'100%'}" [options]="tripListApi" [(ngModel)]="filledTrip" optionLabel="name" name="filledTrip"
-                (onChange)="getTrip(filledTrip.id)"></p-dropdown>
+              <label class="control-label" for="personal.activeTrip">Túrák listája </label>
+              <p-dropdown placeholder="Kérem válasszon" [style]="{'width':'100%'}" [options]="tripListApi" [(ngModel)]="personal.activeTrip"
+                optionLabel="name" name="personal.activeTrip" (onChange)="getTrip(personal.activeTrip)"></p-dropdown>
             </div>
           </div>
         </div>
 
-        <div class="row" *ngIf="tripApi != null">
+        <div class="row" *ngIf="tripApiDescription != null">
           <div class='col-xs-12 col-sm-12'>
-            <h1 class="text-center">{{tripApi.name}}</h1>
-            <p>Hossz: {{tripApi.length}}</p>
-            <p>Ár: {{tripApi.price}}</p>
-            <p>Nehézség: {{tripApi.difficulty?.name}} </p>
+            <h1 class="text-center">{{tripApiDescription.name}}</h1>
+            <p>Hossz: {{tripApiDescription.length}}</p>
+            <p>Ár: {{tripApiDescription.price}}</p>
+            <p>Nehézség: {{tripApiDescription.difficulty?.name}} </p>
             <p>Jellemzők: </p>
-              <ul>
-                <li *ngFor="let attrib of tripApi.attributes">
-                  {{attrib.name}}
-                </li>
-              </ul>
-            <p> Kategória: {{tripApi.category?.name}} </p>
+            <ul>
+              <li *ngFor="let attrib of tripApiDescription.attributes">
+                {{attrib.name}}
+              </li>
+            </ul>
+            <p> Kategória: {{tripApiDescription.category?.name}} </p>
           </div>
         </div>
 

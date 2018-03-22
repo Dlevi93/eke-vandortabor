@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Trip } from '../data/formData.model';
 
 @Injectable()
 export class TripSelectorService {
     _http: HttpClient;
-    trips: Trip[];
+    trips: TripApi[];
     trip: TripApi;
 
     constructor(http: HttpClient) {
@@ -15,8 +14,8 @@ export class TripSelectorService {
         console.log('TripSelector service loaded');
     }
 
-    getTrips(): Observable<Trip[]> {
-        return this._http.get('http://localhost:49223/api/values/Trips').map((data: Trip[]) => {
+    getTrips(): Observable<TripApi[]> {
+        return this._http.get('http://localhost:49223/api/values/Trips').map((data: TripApi[]) => {
             this.trips = data;
             return data;
         });

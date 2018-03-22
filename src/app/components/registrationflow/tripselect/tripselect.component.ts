@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Trip } from '../data/formData.model';
+import { Personal } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import { TripSelectorService, TripApi } from './tripselect.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -14,14 +14,15 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 
 export class TripSelectComponent implements OnInit, OnDestroy {
-    filledTrip: Trip;
     form: any;
 
     public id: number;
     private sub: any;
 
-    tripListApi: Trip[];
-    tripApi: TripApi;
+    tripListApi: TripApi[];
+    tripApiDescription: TripApi;
+
+    personal: Personal;
 
     constructor(private router: Router, private formDataService: FormDataService, private activatedRoute: ActivatedRoute,
         private tripSelectorService: TripSelectorService, private spinnerService: Ng4LoadingSpinnerService) {
@@ -30,16 +31,29 @@ export class TripSelectComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.spinnerService.show();
         this.sub = this.activatedRoute.params.subscribe(params => {
+            this.spinnerService.show();
             this.id = + params['id'];
 
-            this.filledTrip = this.formDataService.getTrip(this.id);
+            this.personal = this.formDataService.getPersonal();
             this.tripSelectorService.getTrips().subscribe(result => { this.tripListApi = result, this.spinnerService.hide(); });
-            this.tripApi = null;
-            if (this.filledTrip.id !== '') {
+            this.spinnerService.show();
+
+            this.tripApiDescription = null;
+            this.personal.activeTrip = null;
+            if (this.id === 1) {
+                this.personal.activeTrip = this.personal.trip1;
+            } else if (this.id === 2) {
+                this.personal.activeTrip = this.personal.trip2;
+            } else if (this.id === 3) {
+                this.personal.activeTrip = this.personal.trip3;
+            }
+
+            if (this.personal.activeTrip !== undefined) {
                 // tslint:disable-next-line:max-line-length
-                this.tripSelectorService.getTrip(parseInt(this.filledTrip.id, 10)).subscribe(result => { this.tripApi = result, this.spinnerService.hide(); });
+                this.tripSelectorService.getTrip(this.personal.activeTrip.id).subscribe(result => { this.tripApiDescription = result, this.spinnerService.hide(); });
             }
         });
+
 
         console.log('Tripselect feature loaded!');
     }
@@ -53,26 +67,33 @@ export class TripSelectComponent implements OnInit, OnDestroy {
             return false;
         }
 
-        this.formDataService.setTrip(this.filledTrip, this.id);
+        this.formDataService.setTrip(this.personal, this.id);
         return true;
     }
 
     goToPrevious(form: any) {
         if (this.save(form, true)) {
-            // Navigate to the work page
-            this.router.navigate(['/registration/pstrip']);
+            if (this.id > 1) {
+                this.router.navigate(['/registration/tripselect', this.id - 1]);
+            } else {
+                this.router.navigate(['/registration/pstrip']);
+            }
         }
     }
 
     goToNext(form: any) {
         if (this.save(form, false)) {
-            // Navigate to the result page
-            this.router.navigate(['/registration/tripselect', this.id + 1]);
+            if (this.id === 3) {
+                this.router.navigate(['/registration/result']);
+            } else {
+                this.router.navigate(['/registration/tripselect', this.id + 1]);
+            }
         }
     }
 
-    getTrip(trip: number) {
+    getTrip(trip: TripApi) {
         this.spinnerService.show();
-        this.tripSelectorService.getTrip(trip).subscribe(result => { this.tripApi = result, this.spinnerService.hide(); });
+        this.tripSelectorService.getTrip(trip.id).subscribe(result => { this.tripApiDescription = result, this.spinnerService.hide(); },
+        error => { this.spinnerService.hide(), this.tripApiDescription = null; } );
     }
 }

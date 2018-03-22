@@ -1,3 +1,5 @@
+import { TripApi } from '../tripselect/tripselect.service';
+
 export class FormData {
     firstName = '';
     lastName = '';
@@ -13,12 +15,10 @@ export class FormData {
     tagNo = '';
     notes = '';
 
-    trip1Id = '';
-    trip1Name = '';
-    trip2Id = '';
-    trip2Name = '';
-    trip3Id = '';
-    trip3Name = '';
+    trip1: TripApi;
+    trip2: TripApi;
+    trip3: TripApi;
+    activeTrip: TripApi;
 
     clear() {
         this.firstName = '';
@@ -35,13 +35,10 @@ export class FormData {
         this.tagNo = '';
         this.notes = '';
 
-        this.trip1Id = '';
-        this.trip2Id = '';
-        this.trip3Id = '';
-
-        this.trip1Name = '';
-        this.trip2Name = '';
-        this.trip3Name = '';
+        this.trip1 = null;
+        this.trip2 = null;
+        this.trip3 = null;
+        this.activeTrip = null;
     }
 }
 
@@ -59,9 +56,9 @@ export class Personal {
     carNo = '';
     tagNo = '';
     notes = '';
-}
 
-export class Trip {
-    id = '';
-    name = '';
+    trip1: TripApi;
+    trip2: TripApi;
+    trip3: TripApi;
+    activeTrip: TripApi;
 }

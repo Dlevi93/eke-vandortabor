@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { FormData, Personal, Trip } from './formData.model';
+import { FormData, Personal } from './formData.model';
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
+import { TripApi } from '../tripselect/tripselect.service';
 
 @Injectable()
 export class FormDataService {
@@ -33,6 +34,10 @@ export class FormDataService {
             tagNo: this.formData.tagNo,
             carNo: this.formData.carNo,
             notes: this.formData.notes,
+            trip1: this.formData.trip1,
+            trip2: this.formData.trip2,
+            trip3: this.formData.trip3,
+            activeTrip: this.formData.activeTrip
         };
         return personal;
     }
@@ -64,60 +69,26 @@ export class FormDataService {
         this.workflowService.validateStep(STEPS.personaltrip);
     }
 
-    getTrip(step: number): Trip {
-        // Return the Address data
-        switch (step) {
-            case 1:
-                const trip1: Trip = {
-                    id: this.formData.trip1Id,
-                    name: this.formData.trip1Name
-                };
-                return trip1;
-            case 2:
-                const trip2: Trip = {
-                    id: this.formData.trip2Id,
-                    name: this.formData.trip2Name
-                };
-                return trip2;
-            case 3:
-                const trip3: Trip = {
-                    id: this.formData.trip3Id,
-                    name: this.formData.trip3Name
-                };
-                return trip3;
-            default:
-                const trip: Trip = {
-                    id: this.formData.trip1Id,
-                    name: this.formData.trip1Name
-                };
-                return trip;
-        }
-    }
-
-    setTrip(data: Trip, step: number) {
+    setTrip(data: Personal, step: number) {
         // Update the Address data only when the Address Form had been validated successfully
         switch (step) {
             case 1:
-                this.formData.trip1Id = data.id;
-                this.formData.trip1Name = data.name;
+                this.formData.trip1 = data.activeTrip;
                 this.isTripForm1Valid = true;
                 this.workflowService.validateStep(STEPS.trip1);
                 break;
             case 2:
-                this.formData.trip2Id = data.id;
-                this.formData.trip3Name = data.name;
+                this.formData.trip2 = data.activeTrip;
                 this.isTripForm2Valid = true;
                 this.workflowService.validateStep(STEPS.trip2);
                 break;
             case 3:
-                this.formData.trip3Id = data.id;
-                this.formData.trip3Name = data.name;
+                this.formData.trip3 = data.activeTrip;
                 this.isTripForm3Valid = true;
                 this.workflowService.validateStep(STEPS.trip3);
                 break;
             default:
-                this.formData.trip1Id = data.id;
-                this.formData.trip1Name = data.name;
+                this.formData.trip1 = data.activeTrip;
                 this.isTripForm1Valid = true;
                 this.workflowService.validateStep(STEPS.trip1);
         }
