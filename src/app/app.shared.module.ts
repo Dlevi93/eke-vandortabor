@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { GrowlModule } from 'primeng/growl';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -49,6 +50,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
         InputTextareaModule,
         CheckboxModule,
         Ng4LoadingSpinnerModule.forRoot(),
+        GrowlModule,
 
         CommonModule,
         HttpClientModule,

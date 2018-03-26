@@ -1,8 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import { HttpClient } from '@angular/common/http';
+
+import { Message } from 'primeng/api';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -12,11 +16,14 @@ import { HttpClient } from '@angular/common/http';
 
 export class ResultComponent implements OnInit {
     title = 'Összegzés';
+    msgs: Message[] = [];
+
     @Input() formData: FormData;
     isFormValid = false;
     _http: HttpClient;
 
-    constructor(private formDataService: FormDataService, http: HttpClient) {
+    constructor(private formDataService: FormDataService, http: HttpClient, private router: Router,
+        private spinnerService: Ng4LoadingSpinnerService) {
         this._http = http;
     }
 
@@ -27,11 +34,18 @@ export class ResultComponent implements OnInit {
     }
 
     submit() {
-        alert('Excellent Job!');
-
+        this.spinnerService.show();
         console.log(this.formData);
-        this._http.post('http://localhost:49223/api/values/', this.formData).subscribe(res => console.log(res));
-        // this.formData = this.formDataService.resetFormData();
-        this.isFormValid = false;
+        this._http.post('http://localhost:49223/api/values/', this.formData).subscribe(res => {
+            this.showSuccessMessage();
+            this.isFormValid = false;
+            setTimeout(() => { this.spinnerService.hide();
+            this.formData = this.formDataService.resetFormData(); this.router.navigate(['/home']); }, 2000);
+        });
+    }
+
+    showSuccessMessage() {
+        this.msgs = [];
+        this.msgs.push({ severity: 'success', summary: 'Gratulálunk', detail: 'Sikeres feliratkozás!' });
     }
 }
