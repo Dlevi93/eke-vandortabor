@@ -16,25 +16,92 @@
         </div>
 
         <div class="row" *ngIf="tripApiDescription != null">
-          <div class='col-xs-12 col-sm-12'>
+          <div class='col-xs-12 col-sm-12' *ngIf="tripApiDescription.id != 1">
             <h1 class="text-center">{{tripApiDescription.name}}</h1>
-            <p>Hossz: {{tripApiDescription.length}}</p>
-            <p>Ár: {{tripApiDescription.price}}</p>
-            <p>Nehézség: {{tripApiDescription.difficulty?.name}} </p>
-            <p>Jellemzők: </p>
-            <ul>
-              <li *ngFor="let attrib of tripApiDescription.attributes">
-                {{attrib.name}}
-              </li>
-            </ul>
-            <p> Kategória: {{tripApiDescription.category?.name}} </p>
+
+            <div class="row">
+              <legend>Általános adatok</legend>
+
+              <div class="col-xs-3">
+                <img class="img-responsive" src="assets/images/attributes/{{tripApiDescription.category?.enum}}.png" title="{{tripApiDescription.category?.name}}">
+              </div>
+
+              <div class="col-xs-3">
+                <img class="img-responsive" src="assets/images/attributes/{{tripApiDescription.difficulty?.enum}}.png" title="{{tripApiDescription.difficulty?.name}}">
+              </div>
+
+              <div class="col-xs-3">
+                <img class="img-responsive" src="assets/images/attributes/hossz.png">
+                <p class="kepen hossz">{{tripApiDescription.length}} km</p>
+              </div>
+
+              <div class="col-xs-3">
+                <img class="img-responsive" src="assets/images/attributes/ido.png">
+                <p class="kepen ido">{{tripApiDescription.time}} óra</p>
+              </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="row">
+              <legend>Jellemzők</legend>
+
+              <div class="col-xs-3" *ngFor="let attrib of tripApiDescription.attributes">
+                <img class="img-responsive" src="assets/images/attributes/{{attrib.enum}}.png" title="{{attrib.name}}">
+              </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="row">
+              <legend>Egyéb tudnivalók</legend>
+
+              <div class="col-xs-3" *ngIf="tripApiDescription.price !== 0">
+                <img class="img-responsive" src="assets/images/attributes/penz.png" title="Ár">
+                <p class="kepen hossz">{{tripApiDescription.price}} lej</p>
+              </div>
+
+              <div class="col-xs-3">
+                <img class="img-responsive" src="assets/images/attributes/korosztaly.png" title="Korosztály">
+                <p class="kepen kor">{{tripApiDescription.age}}</p>
+              </div>
+
+              <!-- <div class="col-xs-3">
+                <img class="img-responsive" src="assets/images/attributes/hely.png">
+                <p class="kepen hely">Helyek száma: {{tripApiDescription.spots?.spots}}</p>
+              </div> -->
+              <div class="col-xs-3">
+                <img class="img-responsive" src="assets/images/attributes/hely.png">
+                <p class="kepen hely">Szintkülönbség: {{tripApiDescription.elevation}}</p>
+              </div>
+
+              <div class="col-xs-3" *ngIf="5000 > tripApiDescription.remainingSpots.spots">
+                <img class="img-responsive" src="assets/images/attributes/hely.png">
+                <p class="kepen hely">Lefoglalható helyek száma: {{tripApiDescription.remainingSpots?.spots}}</p>
+              </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="row">
+              <legend>Leírás</legend>
+
+              <div class="col-xs-12">
+                <p class="font-size-18">{{tripApiDescription.description}}</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
         <div class="form-group text-center">
           <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(tripForm)">
             <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Vissza</button>
-          <button class="btn btn-outline-rounded btn-info" [disabled]="!tripForm.valid" (click)="goToNext(tripForm)"> Tovább
+          <button *ngIf="tripApiDescription != null" class="btn btn-outline-rounded btn-info" [disabled]="!tripForm.valid || tripApiDescription.remainingSpots?.spots == 0"
+            (click)="goToNext(tripForm)"> Tovább
             <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
           </button>
         </div>

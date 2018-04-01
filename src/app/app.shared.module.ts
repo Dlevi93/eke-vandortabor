@@ -13,8 +13,7 @@ import { GrowlModule } from 'primeng/growl';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
+import { DescriptionComponent } from './components/description/description.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
 import { NavbarComponent } from './components/registrationflow/navbar/navbar.component';
@@ -32,9 +31,8 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
+        DescriptionComponent,
         RegistrationComponent,
-        FetchDataComponent,
 
         NavbarComponent,
         PersonalComponent,
@@ -59,8 +57,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'description', component: DescriptionComponent },
             {
                 path: 'registration', component: RegistrationComponent, children: [
                     { path: 'personal', component: PersonalComponent },
@@ -69,14 +66,6 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
                     { path: 'result', component: ResultComponent, canActivate: [WorkflowGuard] },
                     { path: '', redirectTo: '/registration/personal', pathMatch: 'full' },
                 ]
-
-                // path: 'registration', component: RegistrationComponent, children: [
-                //     { path: 'personal', component: PersonalComponent },
-                //     { path: 'pstrip', component: PersonalTripComponent },
-                //     { path: 'tripselect/:id', component: TripSelectComponent },
-                //     { path: 'result', component: ResultComponent },
-                //     { path: '', redirectTo: '/registration/personal', pathMatch: 'full' },
-                // ]
             },
 
             { path: '**', redirectTo: 'PersonalComponent' }

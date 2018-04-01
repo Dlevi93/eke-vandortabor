@@ -39,8 +39,10 @@ export class ResultComponent implements OnInit {
         this._http.post('http://localhost:49223/api/values/', this.formData).subscribe(res => {
             this.showSuccessMessage();
             this.isFormValid = false;
-            setTimeout(() => { this.spinnerService.hide();
-            this.formData = this.formDataService.resetFormData(); this.router.navigate(['/home']); }, 2000);
+            setTimeout(() => {
+                this.spinnerService.hide();
+                this.formData = this.formDataService.resetFormData(); this.router.navigate(['/home']);
+            }, 2000);
         });
     }
 

@@ -14,15 +14,15 @@ export class TripSelectorService {
         console.log('TripSelector service loaded');
     }
 
-    getTrips(): Observable<TripApi[]> {
-        return this._http.get('http://localhost:49223/api/values/Trips').map((data: TripApi[]) => {
+    getTrips(day: number): Observable<TripApi[]> {
+        return this._http.get('http://localhost:49223/api/values/Trips/' + day).map((data: TripApi[]) => {
             this.trips = data;
             return data;
         });
     }
 
-    getTrip(id: number): Observable<TripApi> {
-        return this._http.get('http://localhost:49223/api/values/Trip/' + id).map((data: TripApi) => {
+    getTrip(id: number, day: number): Observable<TripApi> {
+        return this._http.get('http://localhost:49223/api/values/Trip/' + id + '/' + day).map((data: TripApi) => {
             this.trip = data;
             return data;
         });
@@ -34,23 +34,33 @@ export interface TripApi {
     name: string;
     description: string;
     length: number;
+    time: number;
     price: number;
+    age: string;
+    elevation: string;
     category: TripCategoryApi;
     difficulty: TripDifficultyApi;
     attributes: TripAttributesApi[];
+    spots: TripSpots;
+    remainingSpots: TripSpots;
 }
 
 export interface TripCategoryApi {
     name: string;
-    enum: number;
+    enum: string;
 }
 
 export interface TripDifficultyApi {
     name: string;
-    enum: number;
+    enum: string;
 }
 
 export interface TripAttributesApi {
     name: string;
-    enum: number;
+    enum: string;
+}
+
+export interface TripSpots {
+    day: number;
+    spots: number;
 }

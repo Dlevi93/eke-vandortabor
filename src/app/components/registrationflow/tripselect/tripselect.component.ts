@@ -11,6 +11,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     selector: 'mt-wizard-tripselect',
     templateUrl: './tripselect.component.html',
     providers: [TripSelectorService],
+    styleUrls: ['./tripselect.component.css']
 })
 
 export class TripSelectComponent implements OnInit, OnDestroy {
@@ -35,7 +36,7 @@ export class TripSelectComponent implements OnInit, OnDestroy {
             this.id = + params['id'];
 
             this.personal = this.formDataService.getPersonal();
-            this.tripSelectorService.getTrips().subscribe(result => { this.tripListApi = result, this.spinnerService.hide(); });
+            this.tripSelectorService.getTrips(this.id).subscribe(result => { this.tripListApi = result, this.spinnerService.hide(); });
             this.spinnerService.show();
 
             this.tripApiDescription = null;
@@ -50,7 +51,7 @@ export class TripSelectComponent implements OnInit, OnDestroy {
 
             if (this.personal.activeTrip !== undefined) {
                 // tslint:disable-next-line:max-line-length
-                this.tripSelectorService.getTrip(this.personal.activeTrip.id).subscribe(result => { this.tripApiDescription = result, this.spinnerService.hide(); });
+                this.tripSelectorService.getTrip(this.personal.activeTrip.id, this.id).subscribe(result => { this.tripApiDescription = result, this.spinnerService.hide(); });
             }
         });
 
@@ -93,7 +94,8 @@ export class TripSelectComponent implements OnInit, OnDestroy {
 
     getTrip(trip: TripApi) {
         this.spinnerService.show();
-        this.tripSelectorService.getTrip(trip.id).subscribe(result => { this.tripApiDescription = result, this.spinnerService.hide(); },
-        error => { this.spinnerService.hide(), this.tripApiDescription = null; } );
+        // tslint:disable-next-line:max-line-length
+        this.tripSelectorService.getTrip(trip.id, this.id).subscribe(result => { this.tripApiDescription = result, this.spinnerService.hide(); },
+            error => { this.spinnerService.hide(), this.tripApiDescription = null; });
     }
 }

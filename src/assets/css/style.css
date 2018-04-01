@@ -27,7 +27,7 @@
 
 /* active buttons */
 #status-buttons a.active span.round-tabs.one { 
-    background: rgb(34, 194, 34); 
+    background: #2D522D; 
     color: #fff
 }
 
