@@ -36,7 +36,7 @@ export class ResultComponent implements OnInit {
     submit() {
         this.spinnerService.show();
         console.log(this.formData);
-        this._http.post('http://localhost:49223/api/values/', this.formData).subscribe(res => {
+        this._http.post('http://5.189.187.44/api/values/', this.formData).subscribe(res => {
             this.showSuccessMessage();
             this.isFormValid = false;
             setTimeout(() => {

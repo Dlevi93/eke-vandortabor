@@ -15,14 +15,14 @@ export class PersonalTripService {
     }
 
     getMemberships(): Observable<Membership[]> {
-        return this._http.get('http://localhost:49223/api/values/Memberships').map((data: Membership[]) => {
+        return this._http.get('http://5.189.187.44/api/values/Memberships').map((data: Membership[]) => {
             this.accomodationTypes = data;
             return data;
         });
     }
 
     getAccomodationTypes(): Observable<AccomodationType[]> {
-        return this._http.get('http://localhost:49223/api/values/AccomodationTypes').map((data: AccomodationType[]) => {
+        return this._http.get('http://5.189.187.44/api/values/AccomodationTypes').map((data: AccomodationType[]) => {
             this.accomodationTypes = data;
             return data;
         });

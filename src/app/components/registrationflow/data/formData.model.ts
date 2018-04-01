@@ -1,4 +1,5 @@
 import { TripApi } from '../tripselect/tripselect.service';
+import { AccomodationType, Membership } from '../personaltrip/personaltrip.service';
 
 export class FormData {
     firstName = '';

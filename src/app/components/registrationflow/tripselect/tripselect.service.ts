@@ -15,14 +15,14 @@ export class TripSelectorService {
     }
 
     getTrips(day: number): Observable<TripApi[]> {
-        return this._http.get('http://localhost:49223/api/values/Trips/' + day).map((data: TripApi[]) => {
+        return this._http.get('http://5.189.187.44/api/values/Trips/' + day).map((data: TripApi[]) => {
             this.trips = data;
             return data;
         });
     }
 
     getTrip(id: number, day: number): Observable<TripApi> {
-        return this._http.get('http://localhost:49223/api/values/Trip/' + id + '/' + day).map((data: TripApi) => {
+        return this._http.get('http://5.189.187.44/api/values/Trip/' + id + '/' + day).map((data: TripApi) => {
             this.trip = data;
             return data;
         });
