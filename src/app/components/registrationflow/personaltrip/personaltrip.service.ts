@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { AppSettings } from '../../app/app.settings';
 
 @Injectable()
 export class PersonalTripService {
@@ -15,14 +16,14 @@ export class PersonalTripService {
     }
 
     getMemberships(): Observable<Membership[]> {
-        return this._http.get('http://5.189.187.44/api/values/Memberships').map((data: Membership[]) => {
+        return this._http.get(AppSettings.API_ENDPOINT + '/Memberships').map((data: Membership[]) => {
             this.accomodationTypes = data;
             return data;
         });
     }
 
     getAccomodationTypes(): Observable<AccomodationType[]> {
-        return this._http.get('http://5.189.187.44/api/values/AccomodationTypes').map((data: AccomodationType[]) => {
+        return this._http.get(AppSettings.API_ENDPOINT + '/AccomodationTypes').map((data: AccomodationType[]) => {
             this.accomodationTypes = data;
             return data;
         });

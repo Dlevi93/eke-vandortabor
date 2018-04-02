@@ -34,10 +34,11 @@ export class PersonalTripComponent implements OnInit {
     ngOnInit() {
         this.spinnerService.show();
         this.personal = this.formDataService.getPersonal();
-        this.personalTripService.getMemberships().subscribe(result => this.memberships = result);
-        this.personalTripService.getAccomodationTypes().subscribe(result => this.accomodationTypes = result);
+        this.personalTripService.getMemberships().subscribe(result => { this.memberships = result; this.spinnerService.hide(); });
+        // tslint:disable-next-line:max-line-length
+        this.personalTripService.getAccomodationTypes().subscribe(result => { this.accomodationTypes = result; this.spinnerService.hide(); });
         console.log('Personal trip feature loaded!');
-        this.spinnerService.hide();
+
     }
 
     save(form: any, backNav: boolean): boolean {

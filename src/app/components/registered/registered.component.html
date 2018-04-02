@@ -1,0 +1,9 @@
+<h1>Regisztrált táborozók listája</h1>
+<br />
+<legend>Jelentkezők száma: {{users.length}}</legend>
+
+<p-dataTable [value]="users">
+  <p-column field="name" header="Név"></p-column>
+  <p-column field="city" header="Város"></p-column>
+  <p-column field="member" header="Tagság"></p-column>
+</p-dataTable>

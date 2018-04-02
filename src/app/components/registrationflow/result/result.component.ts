@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Message } from 'primeng/api';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { AppSettings } from '../../app/app.settings';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -36,7 +37,7 @@ export class ResultComponent implements OnInit {
     submit() {
         this.spinnerService.show();
         console.log(this.formData);
-        this._http.post('http://5.189.187.44/api/values/', this.formData).subscribe(res => {
+        this._http.post(AppSettings.API_ENDPOINT + '/', this.formData).subscribe(res => {
             this.showSuccessMessage();
             this.isFormValid = false;
             setTimeout(() => {

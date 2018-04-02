@@ -9,12 +9,14 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { GrowlModule } from 'primeng/growl';
+import { DataTableModule } from 'primeng/datatable';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { DescriptionComponent } from './components/description/description.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { RegisteredComponent } from './components/registered/registered.component';
 
 import { NavbarComponent } from './components/registrationflow/navbar/navbar.component';
 import { PersonalComponent } from './components/registrationflow/personal/personal.component';
@@ -26,6 +28,8 @@ import { ResultComponent } from './components/registrationflow/result/result.com
 import { FormDataService } from './components/registrationflow/data/formData.service';
 import { WorkflowService } from './components/registrationflow/workflow/workflow.service';
 import { WorkflowGuard } from './components/registrationflow/workflow/workflow-guard.service';
+import { RegisteredService } from './components/registered/registered.service';
+
 
 @NgModule({
     declarations: [
@@ -33,6 +37,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
         NavMenuComponent,
         DescriptionComponent,
         RegistrationComponent,
+        RegisteredComponent,
 
         NavbarComponent,
         PersonalComponent,
@@ -49,6 +54,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
         CheckboxModule,
         Ng4LoadingSpinnerModule.forRoot(),
         GrowlModule,
+        DataTableModule,
 
         CommonModule,
         HttpClientModule,
@@ -58,6 +64,7 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'description', component: DescriptionComponent },
+            { path: 'registered', component: RegisteredComponent },
             {
                 path: 'registration', component: RegistrationComponent, children: [
                     { path: 'personal', component: PersonalComponent },
@@ -67,11 +74,10 @@ import { WorkflowGuard } from './components/registrationflow/workflow/workflow-g
                     { path: '', redirectTo: '/registration/personal', pathMatch: 'full' },
                 ]
             },
-
             { path: '**', redirectTo: 'PersonalComponent' }
         ])
     ],
-    providers: [WorkflowGuard, FormDataService, WorkflowService]
+    providers: [WorkflowGuard, FormDataService, WorkflowService, RegisteredService]
 })
 export class AppModuleShared {
 }

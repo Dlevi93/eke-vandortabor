@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { AppSettings } from '../../app/app.settings';
 
 @Injectable()
 export class TripSelectorService {
@@ -15,14 +16,14 @@ export class TripSelectorService {
     }
 
     getTrips(day: number): Observable<TripApi[]> {
-        return this._http.get('http://5.189.187.44/api/values/Trips/' + day).map((data: TripApi[]) => {
+        return this._http.get(AppSettings.API_ENDPOINT + '/Trips/' + day).map((data: TripApi[]) => {
             this.trips = data;
             return data;
         });
     }
 
     getTrip(id: number, day: number): Observable<TripApi> {
-        return this._http.get('http://5.189.187.44/api/values/Trip/' + id + '/' + day).map((data: TripApi) => {
+        return this._http.get(AppSettings.API_ENDPOINT + '/Trip/' + id + '/' + day).map((data: TripApi) => {
             this.trip = data;
             return data;
         });
