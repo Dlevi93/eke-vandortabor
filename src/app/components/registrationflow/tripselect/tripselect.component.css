@@ -10,8 +10,10 @@
 }
 
 .hossz {
-  left: 17%;
+  left: 14%;
   top: 12%;
+  text-align: center;
+  width: 140px;
 }
 
 .ido {
