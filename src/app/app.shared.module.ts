@@ -74,7 +74,7 @@ import { RegisteredService } from './components/registered/registered.service';
                     { path: '', redirectTo: '/registration/personal', pathMatch: 'full' },
                 ]
             },
-            { path: '**', redirectTo: 'PersonalComponent' }
+            { path: '**', redirectTo: 'home' }
         ])
     ],
     providers: [WorkflowGuard, FormDataService, WorkflowService, RegisteredService]

@@ -2,8 +2,10 @@
 <br />
 <legend>Jelentkezők száma: {{users?.length}}</legend>
 
-<p-dataTable [value]="users">
-  <p-column field="name" header="Név"></p-column>
-  <p-column field="city" header="Város"></p-column>
-  <p-column field="member" header="Tagság"></p-column>
-</p-dataTable>
+<div *ngIf="users?.length > 0">
+  <p-dataTable [value]="users" [rows]="50" [paginator]="true">
+    <p-column field="name" header="Név" [sortable]="true" [filter]="true" filterMatchMode="contains" filterPlaceholder="Keresés"></p-column>
+    <p-column field="city" header="Város" [sortable]="true"></p-column>
+    <p-column field="member" header="Tagság" [sortable]="true"></p-column>
+  </p-dataTable>
+</div>

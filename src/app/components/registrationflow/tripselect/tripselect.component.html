@@ -23,20 +23,20 @@
               <legend>Általános adatok</legend>
 
               <div class="col-xs-3">
-                <img class="img-responsive" src="assets/images/attributes/{{tripApiDescription.category?.enum}}.png" title="{{tripApiDescription.category?.name}}">
+                <img class="img-responsive" src="/assets/images/attributes/{{tripApiDescription.category?.enum}}.png" title="{{tripApiDescription.category?.name}}">
               </div>
 
               <div class="col-xs-3">
-                <img class="img-responsive" src="assets/images/attributes/{{tripApiDescription.difficulty?.enum}}.png" title="{{tripApiDescription.difficulty?.name}}">
+                <img class="img-responsive" src="/assets/images/attributes/{{tripApiDescription.difficulty?.enum}}.png" title="{{tripApiDescription.difficulty?.name}}">
               </div>
 
               <div class="col-xs-3">
-                <img class="img-responsive" src="assets/images/attributes/hossz.png">
+                <img class="img-responsive" src="/assets/images/attributes/hossz.png">
                 <p class="kepen hossz">{{tripApiDescription.length}} km</p>
               </div>
 
               <div class="col-xs-3">
-                <img class="img-responsive" src="assets/images/attributes/ido.png">
+                <img class="img-responsive" src="/assets/images/attributes/ido.png">
                 <p class="kepen ido">{{tripApiDescription.time}} óra</p>
               </div>
             </div>
@@ -48,7 +48,7 @@
               <legend>Jellemzők</legend>
 
               <div class="col-xs-3" *ngFor="let attrib of tripApiDescription.attributes">
-                <img class="img-responsive" src="assets/images/attributes/{{attrib.enum}}.png" title="{{attrib.name}}">
+                <img class="img-responsive" src="/assets/images/attributes/{{attrib.enum}}.png" title="{{attrib.name}}">
               </div>
             </div>
 
@@ -59,13 +59,13 @@
               <legend>Egyéb tudnivalók</legend>
 
               <div class="col-xs-3" *ngIf="tripApiDescription.price !== 0">
-                <img class="img-responsive" src="assets/images/attributes/penz.png" title="Ár">
+                <img class="img-responsive" src="/assets/images/attributes/penz.png" title="Ár">
                 <p class="kepen hossz">{{tripApiDescription.price}} lej</p>
               </div>
 
               <div class="col-xs-3">
-                <img class="img-responsive" src="assets/images/attributes/korosztaly.png" title="Korosztály">
-                <p class="kepen kor">{{tripApiDescription.age}}</p>
+                <img class="img-responsive" src="/assets/images/attributes/korosztaly.png" title="Korosztály">
+                <p class="kepen kor font-size-15">{{tripApiDescription.age}}</p>
               </div>
 
               <!-- <div class="col-xs-3">
@@ -73,13 +73,13 @@
                 <p class="kepen hely">Helyek száma: {{tripApiDescription.spots?.spots}}</p>
               </div> -->
               <div class="col-xs-3">
-                <img class="img-responsive" src="assets/images/attributes/hely.png">
+                <img class="img-responsive" src="/assets/images/attributes/hely.png">
                 <p class="kepen hely">Szintkülönbség: {{tripApiDescription.elevation}}</p>
               </div>
 
               <div class="col-xs-3" *ngIf="5000 > tripApiDescription.remainingSpots.spots">
-                <img class="img-responsive" src="assets/images/attributes/hely.png">
-                <p class="kepen hely">Lefoglalható helyek száma: {{tripApiDescription.remainingSpots?.spots}}</p>
+                <img class="img-responsive" src="/assets/images/attributes/hely.png">
+                <p class="kepen hely" style="color: indianred; ">Lefoglalható helyek száma: {{tripApiDescription.remainingSpots?.spots}}</p>
               </div>
             </div>
 
