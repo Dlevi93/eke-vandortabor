@@ -51,4 +51,20 @@ export class ResultComponent implements OnInit {
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'Gratulálunk', detail: 'Sikeres feliratkozás!' });
     }
+
+    print(): void {
+        let printContents, popupWin;
+        printContents = document.getElementById('print-section').innerHTML;
+        popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+        popupWin.document.open();
+        popupWin.document.write(`
+          <html>
+            <head>
+              <title>EKE XXVII. Vándortábor</title>
+            </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+          </html>`
+        );
+        popupWin.document.close();
+    }
 }

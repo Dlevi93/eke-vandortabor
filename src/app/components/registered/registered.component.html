@@ -7,5 +7,10 @@
     <p-column field="name" header="Név" [sortable]="true" [filter]="true" filterMatchMode="contains" filterPlaceholder="Keresés"></p-column>
     <p-column field="city" header="Város" [sortable]="true"></p-column>
     <p-column field="member" header="Tagság" [sortable]="true"></p-column>
+    <p-column field="trips" header="Túrák listája">
+      <ng-template let-col let-trips="rowData" let-ri="rowIndex" pTemplate="body">
+        <div [innerHTML]="trips[col.field]"></div>
+      </ng-template>
+    </p-column>
   </p-dataTable>
 </div>

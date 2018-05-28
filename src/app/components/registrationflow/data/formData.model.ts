@@ -16,6 +16,9 @@ export class FormData {
     tagNo = '';
     notes = '';
 
+    dayOnlySelected = '';
+    paymentCategory = '';
+
     trip1: TripApi;
     trip2: TripApi;
     trip3: TripApi;
@@ -30,11 +33,14 @@ export class FormData {
         this.country = '';
         this.phoneno = '';
         this.cnp = '';
-        this.member = '';
+        this.member = null;
         this.accomodation = '';
         this.carNo = '';
         this.tagNo = '';
         this.notes = '';
+
+        this.dayOnlySelected = '';
+        this.paymentCategory = '';
 
         this.trip1 = null;
         this.trip2 = null;
@@ -57,6 +63,8 @@ export class Personal {
     carNo = '';
     tagNo = '';
     notes = '';
+    dayOnlySelected = '';
+    paymentCategory = '';
 
     trip1: TripApi;
     trip2: TripApi;

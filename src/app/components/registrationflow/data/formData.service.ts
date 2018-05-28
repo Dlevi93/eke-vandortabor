@@ -37,7 +37,9 @@ export class FormDataService {
             trip1: this.formData.trip1,
             trip2: this.formData.trip2,
             trip3: this.formData.trip3,
-            activeTrip: this.formData.activeTrip
+            activeTrip: this.formData.activeTrip,
+            dayOnlySelected: this.formData.dayOnlySelected,
+            paymentCategory: this.formData.paymentCategory
         };
         return personal;
     }
@@ -65,6 +67,8 @@ export class FormDataService {
         this.formData.carNo = data.carNo;
         this.formData.tagNo = data.tagNo;
         this.formData.notes = data.notes;
+        this.formData.paymentCategory = data.paymentCategory;
+        this.formData.dayOnlySelected = data.dayOnlySelected;
         // Validate Personal Step in Workflow
         this.workflowService.validateStep(STEPS.personaltrip);
     }

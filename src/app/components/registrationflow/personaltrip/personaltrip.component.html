@@ -9,7 +9,7 @@
             <div class="form-group">
               <label class="control-label" for="member">Tagság </label>
               <p-dropdown placeholder="Kérem válasszon" [style]="{'width':'100%'}" required [options]="memberships" [(ngModel)]="personal.member"
-                optionLabel="name" name="member"></p-dropdown>
+                optionLabel="name" name="member" (onChange)="changePaymentCategory(personal.member, personal.birthDate)"></p-dropdown>
             </div>
           </div>
           <div class='col-xs-12 col-sm-6'>
@@ -35,7 +35,35 @@
               <label class="control-label" for="carNo">Személygépkocsi rendszáma</label>
               <input class="form-control input-md" #carNo="ngModel" id="carNo" name="carNo" type="text" placeholder="Személygépkocsi szám"
                 [(ngModel)]="personal.carNo">
-              <div class="alert alert-danger" [hidden]="carNo.valid || checkAccomodationValue(personal.accomodation)">Személygépkocsi rendszám kitöltése kötelező</div>
+              <div class="alert alert-warning">Személygépkocsi rendszám kitöltése amennyiben a tábor területén lesz</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class='col-xs-12 col-sm-6'>
+            <div class="form-group">
+              <label class="control-label" for="dayOnlySelected">Napijegy</label>
+              <p-checkbox [(ngModel)]="dayOnlySelected" [ngModelOptions]="{standalone: true}" binary="false" (onChange)="changeDayOnlyBoolSelected()"></p-checkbox>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="dayOnlySelected">
+          <div class='col-xs-12 col-sm-6'>
+            <div class="form-group">
+              <label class="control-label" for="dayOnlySelectedList">Nap kiválasztása</label>
+              <p-dropdown placeholder="Kérem válasszon" [style]="{'width':'100%'}" required [options]="dayOnlySelectedList" [(ngModel)]="personal.dayOnlySelected"
+                optionLabel="label" name="dayOnlySelected" (onChange)="changeDayOnlySelected()"></p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class='col-xs-12 col-sm-6'>
+            <div class="form-group">
+              <label class="control-label" for="kidInFamily">A gyerek családi kedvezményt kap</label>
+              <p-checkbox [(ngModel)]="kidInFamily" [ngModelOptions]="{standalone: true}" binary="false" (onChange)="changeKidInFamily()"></p-checkbox>
             </div>
           </div>
         </div>
@@ -53,7 +81,7 @@
           <button type="button" class="btn btn-outline-rounded btn-default" (click)="goToPrevious(workForm)">
             <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Vissza </button>
           <button type="button" class="btn btn-outline-rounded btn-info" [disabled]="!workForm.valid" (click)="goToNext(workForm)">
-          Tov&aacute;bb
+            Tov&aacute;bb
             <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
           </button>
         </div>
