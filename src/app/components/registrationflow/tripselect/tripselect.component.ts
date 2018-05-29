@@ -95,7 +95,7 @@ export class TripSelectComponent implements OnInit, OnDestroy {
     getTrip(trip: TripApi) {
         this.spinnerService.show();
         // tslint:disable-next-line:max-line-length
-        this.tripSelectorService.getTrip(trip.id, this.id).subscribe(result => { this.tripApiDescription = result, this.spinnerService.hide(); },
+        this.tripSelectorService.getTrip(trip.id, this.id).subscribe(result => { this.tripApiDescription = result, this.personal.activeTrip = result, this.spinnerService.hide(); },
             error => { this.spinnerService.hide(), this.tripApiDescription = null; });
     }
 }

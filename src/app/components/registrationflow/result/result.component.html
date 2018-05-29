@@ -129,11 +129,52 @@
       <div class="row" *ngIf="formData.notes !== ''">
         <div class='col-xs-3 col-sm-2'>
           <div class="form-group">
-            <label class="control-label" for="trip3">Megjegyzések: </label>
+            <label class="control-label" for="notes">Megjegyzések: </label>
           </div>
         </div>
         <div class='col-xs-9 col-sm-10'>
           {{formData.notes}}
+        </div>
+      </div>
+      <div class="row">
+        <div class='col-xs-3 col-sm-2'>
+          <div class="form-group">
+            <label class="control-label" style="color:indianred">Túrák összege: </label>
+          </div>
+        </div>
+        <div class='col-xs-9 col-sm-10'>
+          <b>{{tripTotal}}</b> lej
+        </div>
+      </div>
+      <div class="row">
+        <div class='col-xs-3 col-sm-2'>
+          <div class="form-group">
+            <label class="control-label" style="color:indianred">Bejelentkezési díj: </label>
+          </div>
+        </div>
+        <div class='col-xs-9 col-sm-10'>
+          <b>{{paymentTypeValues[formData.paymentCategory]}}</b> lej
+        </div>
+      </div>
+      <div class="row" *ngIf="formData.carNo !== ''">
+        <div class='col-xs-3 col-sm-2'>
+          <div class="form-group">
+            <label class="control-label" style="color:indianred">Parkolási díj: </label>
+          </div>
+        </div>
+        <div class='col-xs-9 col-sm-10'>
+          <b>5</b> lej
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class='col-xs-3 col-sm-2'>
+          <div class="form-group">
+            <label class="control-label" style="color:indianred">Végösszeg: </label>
+          </div>
+        </div>
+        <div class='col-xs-9 col-sm-10'>
+          <b>{{totalAmount}}</b> lej
         </div>
       </div>
     </div>

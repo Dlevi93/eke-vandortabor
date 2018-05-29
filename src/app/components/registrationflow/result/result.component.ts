@@ -23,6 +23,21 @@ export class ResultComponent implements OnInit {
     isFormValid = false;
     _http: HttpClient;
 
+    paymentTypeValues = {
+        0: 120,
+        1: 60,
+        2: 0,
+        3: 60,
+        4: 30,
+        5: 70,
+        6: 35,
+        7: 0,
+        8: 30,
+    };
+
+    tripTotal: number;
+    totalAmount: number;
+
     constructor(private formDataService: FormDataService, http: HttpClient, private router: Router,
         private spinnerService: Ng4LoadingSpinnerService) {
         this._http = http;
@@ -31,6 +46,13 @@ export class ResultComponent implements OnInit {
     ngOnInit() {
         this.formData = this.formDataService.getFormData();
         this.isFormValid = this.formDataService.isFormValid();
+        this.tripTotal = this.formData.trip1.price + this.formData.trip2.price + this.formData.trip3.price;
+
+        let parkingAmount = 0;
+        if (this.formData.carNo !== '') {
+            parkingAmount = 5;
+        }
+        this.totalAmount = this.tripTotal + this.paymentTypeValues[this.formData.paymentCategory] + parkingAmount;
         console.log('Result feature loaded!');
     }
 
@@ -62,7 +84,7 @@ export class ResultComponent implements OnInit {
             <head>
               <title>EKE XXVII. Vándortábor</title>
             </head>
-        <body onload="window.print();window.close()">${printContents}</body>
+            <body onload="window.print();window.close()">${printContents}</body>
           </html>`
         );
         popupWin.document.close();
