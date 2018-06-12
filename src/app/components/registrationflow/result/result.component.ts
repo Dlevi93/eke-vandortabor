@@ -59,19 +59,40 @@ export class ResultComponent implements OnInit {
     submit() {
         this.spinnerService.show();
         console.log(this.formData);
-        this._http.post(AppSettings.API_ENDPOINT + '/', this.formData).subscribe(res => {
-            this.showSuccessMessage();
-            this.isFormValid = false;
-            setTimeout(() => {
-                this.spinnerService.hide();
-                this.formData = this.formDataService.resetFormData(); this.router.navigate(['/home']);
-            }, 2000);
+        this._http.post(AppSettings.API_ENDPOINT + '/', this.formData, { observe: 'response' }).subscribe(res => {
+            const resBody: any = res.body;
+            if (resBody.statusCode === 406) {
+                this.showErrorMessage('Sikertelen feliratkozás. A kijelölt túrák nem elérhetőek. Kérem ellenőrizze a bevitt adatokat');
+                setTimeout(() => {
+                    this.spinnerService.hide();
+                    this.router.navigate(['/personal']);
+                }, 5000);
+            } else if (resBody.statusCode === 304) {
+                this.showErrorMessage('Sikertelen feliratkozás. Kérem próbálja újra');
+                this.isFormValid = false;
+                setTimeout(() => {
+                    this.spinnerService.hide();
+                    this.formData = this.formDataService.resetFormData(); this.router.navigate(['/home']);
+                }, 5000);
+            } else {
+                this.showSuccessMessage();
+                this.isFormValid = false;
+                setTimeout(() => {
+                    this.spinnerService.hide();
+                    this.formData = this.formDataService.resetFormData(); this.router.navigate(['/home']);
+                }, 2000);
+            }
         });
     }
 
     showSuccessMessage() {
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'Gratulálunk', detail: 'Sikeres feliratkozás!' });
+    }
+
+    showErrorMessage(message: string) {
+        this.msgs = [];
+        this.msgs.push({ severity: 'error', summary: 'Hiba a feliratkozás során', detail: message });
     }
 
     print(): void {
@@ -89,4 +110,8 @@ export class ResultComponent implements OnInit {
         );
         popupWin.document.close();
     }
+}
+
+export interface Body {
+    statusCode: string;
 }

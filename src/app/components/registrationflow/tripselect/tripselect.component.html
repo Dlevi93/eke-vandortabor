@@ -100,7 +100,7 @@
         <div class="form-group text-center">
           <button type="button" class="btn btn-outline-rounded btn-default" (click)="goToPrevious(tripForm)">
             <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Vissza</button>
-          <button type="button" *ngIf="tripApiDescription != null" class="btn btn-outline-rounded btn-info" [disabled]="(!tripForm.valid || tripApiDescription.remainingSpots?.spots < 1) && tripApiDescription.id != 1"
+          <button type="button" *ngIf="tripApiDescription != null" class="btn btn-outline-rounded btn-info" [disabled]="(!tripForm.valid || tripApiDescription.remainingSpots?.spots == 0) && tripApiDescription.id != 1"
             (click)="goToNext(tripForm)"> Tovább
             <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
           </button>
