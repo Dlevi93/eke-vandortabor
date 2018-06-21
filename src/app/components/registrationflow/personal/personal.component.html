@@ -5,6 +5,21 @@
     <div class='row'>
       <div class='col-sm-12 col-md-offset-2 col-md-8'>
         <div class="row">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Figyelem!</h4>
+            <p>A GDPR rendelkezéseinek megfelelően a regisztráció kitöltésével elfogadom, hogy az Erdélyi Kárpát-Egyesület felhasználhassa
+              személyes adataimat a XXVII. EKE Vándortábor megszervezése érdekében. A Vándortábor lejártával, amennyiben
+              szeretném, hogy az EKE többet ne használja fel adataimat, személyesen fogom kérni személyes adataim törlését
+              az EKE szervereiről. </p>
+            <hr>
+            <p class="mb-0">Az Erdélyi Kárpát-Egyesület biztosítja, hogy bármilyen formában - irottan, elektronikusan, telefonon stb. - beérkező
+              adattörlési kérésnek eleget tesz.</p>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row">
           <div class='col-xs-12 col-sm-4'>
             <div class="form-group">
               <label class="control-label" for="firstname">Vezet&eacute;kn&eacute;v</label>
@@ -78,7 +93,7 @@
 
         <div class="form-group text-center">
           <button type="button" class="btn btn-success btn-outline-rounded btn-info" [disabled]="!personalForm.valid" (click)="goToNext(personalForm)">
-          Tovább
+            Tovább
             <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
           </button>
         </div>
