@@ -10,6 +10,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { GrowlModule } from 'primeng/growl';
 import { DataTableModule } from 'primeng/datatable';
+import { CookieLawModule } from 'angular2-cookie-law';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -55,6 +56,7 @@ import { RegisteredService } from './components/registered/registered.service';
         Ng4LoadingSpinnerModule.forRoot(),
         GrowlModule,
         DataTableModule,
+        CookieLawModule,
 
         CommonModule,
         HttpClientModule,
