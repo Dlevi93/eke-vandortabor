@@ -9,6 +9,8 @@ import { Message } from 'primeng/api';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { AppSettings } from '../../app/app.settings';
 
+import { SelectItem } from 'primeng/api';
+
 @Component({
     // tslint:disable-next-line:component-selector
     selector: 'mt-wizard-result',
@@ -52,6 +54,12 @@ export class ResultComponent implements OnInit {
         if (this.formData.carNo !== '') {
             parkingAmount = 5;
         }
+
+        if (this.formData.dayOnlySelected !== '') {
+            const daySelected: any = this.formData.dayOnlySelected;
+            this.formData.dayOnlySelected = daySelected.value;
+        }
+
         this.totalAmount = this.tripTotal + this.paymentTypeValues[this.formData.paymentCategory] + parkingAmount;
         console.log('Result feature loaded!');
     }
