@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisteredService } from './registered.service';
+import { AdminService } from './admin.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     // tslint:disable-next-line:component-selector
-    selector: 'registered',
-    templateUrl: './registered.component.html',
-    styleUrls: ['./registered.component.css'],
+    selector: 'app-admin',
+    templateUrl: './admin.component.html',
+    providers: [AdminService],
 })
 
-export class RegisteredComponent implements OnInit {
-    users: RegisteredUser[];
+export class AdminComponent implements OnInit {
+    users: AdminUser[];
+    cols: any[];
 
-    constructor(private registeredService: RegisteredService, private spinnerService: Ng4LoadingSpinnerService) { }
+    constructor(private registeredService: AdminService, private spinnerService: Ng4LoadingSpinnerService) { }
 
     ngOnInit() {
         this.spinnerService.show();
@@ -20,7 +21,7 @@ export class RegisteredComponent implements OnInit {
     }
 }
 
-export class RegisteredUser {
+export class AdminUser {
     firstName = '';
     lastName = '';
     city = '';

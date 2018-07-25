@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DescriptionComponent } from './components/description/description.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { RegisteredComponent } from './components/registered/registered.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 import { NavbarComponent } from './components/registrationflow/navbar/navbar.component';
 import { PersonalComponent } from './components/registrationflow/personal/personal.component';
@@ -39,6 +40,7 @@ import { RegisteredService } from './components/registered/registered.service';
         DescriptionComponent,
         RegistrationComponent,
         RegisteredComponent,
+        AdminComponent,
 
         NavbarComponent,
         PersonalComponent,
@@ -66,6 +68,7 @@ import { RegisteredService } from './components/registered/registered.service';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'description', component: DescriptionComponent },
+            { path: 'admin', component: AdminComponent },
             { path: 'registered', component: RegisteredComponent },
             {
                 path: 'registration', component: RegistrationComponent, children: [
