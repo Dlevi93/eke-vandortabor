@@ -1,4 +1,4 @@
-<h1>Regisztrált táborozók listája</h1>
+<h1>Összes lementett adat - Admin panel</h1>
 <br />
 <legend>Jelentkezők száma: {{users?.length}}</legend>
 
@@ -14,7 +14,19 @@
 
     <p-column field="name" header="Név" [sortable]="true" [filter]="true" filterMatchMode="contains" filterPlaceholder="Keresés"></p-column>
     <p-column field="city" header="Város" [sortable]="true"></p-column>
+    <p-column field="country" header="Ország" [sortable]="true"></p-column>
     <p-column field="member" header="Tagság" [sortable]="true"></p-column>
+
+    <p-column field="birthdate" header="Születési dátum" [sortable]="true"></p-column>
+    <p-column field="registrationDate" header="Regisztrációs dátum" [sortable]="true"></p-column>
+    <p-column field="phoneNumber" header="Telefonszám" [sortable]="true"></p-column>
+    <p-column field="email" header="Email cím" [sortable]="true"></p-column>
+    <p-column field="cnp" header="Személyi szám" [sortable]="true"></p-column>
+    <p-column field="note" header="Megjegyzés" [sortable]="true"></p-column>
+    <p-column field="accomodationTypeName" header="Szállás neve" [sortable]="true"></p-column>
+    <p-column field="car" header="Autó rendszáma" [sortable]="true"></p-column>
+    <p-column field="paymentCategory" header="Fizetési kategória" [sortable]="true"></p-column>
+    <p-column field="selectedDay" header="Napijegy" [sortable]="true"></p-column>
     <p-column field="trips" header="Túrák listája">
       <ng-template let-col let-trips="rowData" let-ri="rowIndex" pTemplate="body">
         <div [innerHTML]="trips[col.field]"></div>

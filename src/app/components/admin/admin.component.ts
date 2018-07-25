@@ -22,9 +22,21 @@ export class AdminComponent implements OnInit {
 }
 
 export class AdminUser {
-    firstName = '';
-    lastName = '';
-    city = '';
+    name = '';
+    birthdate = '';
+    registrationDate = '';
     member = '';
+    country = '';
+    city = '';
+    phoneNumber = '';
+    email = '';
+    cnp = '';
+    car = '';
+    note = '';
+    paymentCategory = '';
+    selectedDay = '';
+    membership = '';
+    accomodationType = '';
+    accomodationTypeName = '';
     trips = '';
 }

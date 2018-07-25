@@ -8,7 +8,7 @@ export class AdminService {
     constructor(private http: HttpClient) { }
 
     getRegisteredList() {
-        return this.http.get(AppSettings.API_ENDPOINT + '/UserList')
+        return this.http.get(AppSettings.API_ENDPOINT + '/UserListToTb')
             .toPromise()
             .then(res => <AdminUser[]>res)
             .then(data => data);
