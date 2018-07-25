@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Personal } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
+import { Message } from '../../../../../node_modules/primeng/api';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -19,6 +20,12 @@ export class PersonalComponent implements OnInit {
     }
 
     ngOnInit() {
+        const dateNow = new Date();
+        const dateThen = new Date('2018-07-23');
+        if (dateNow > dateThen) {
+            this.router.navigate(['/']);
+        }
+
         this.personal = this.formDataService.getPersonal();
         console.log('Personal feature loaded!');
     }

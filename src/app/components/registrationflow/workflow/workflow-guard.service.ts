@@ -6,9 +6,11 @@ import {
 } from '@angular/router';
 
 import { WorkflowService } from './workflow.service';
+import { Message } from '../../../../../node_modules/primeng/api';
 
 @Injectable()
 export class WorkflowGuard implements CanActivate {
+
     constructor(private router: Router, private workflowService: WorkflowService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -27,7 +29,6 @@ export class WorkflowGuard implements CanActivate {
             this.router.navigate([url]);
             return false;
         }
-
         return true;
     }
 }
